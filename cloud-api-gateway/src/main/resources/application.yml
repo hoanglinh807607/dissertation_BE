@@ -1,0 +1,73 @@
+server:
+  port: ${port:8762}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: users-service
+          uri: lb://users-service
+          predicates:
+            - Path=/users/**, /roles/**, /auth/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: users-service
+                fallbackuri: forward:/userServiceFallBack
+        - id: departments-service
+          uri: lb://departments-service
+          predicates:
+            - Path=/departments/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: departments-service
+                fallbackuri: forward:/departmentServiceFallBack
+        - id: homestay-service
+          uri: lb://homestay-service
+          predicates:
+            - Path=/homestays/**, /category-homestays/**, /category-utilities/**, /utilities/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: homestay-service
+                fallbackuri: forward:/homestayServiceFallBack
+
+
+
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      orderService:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        waitDurationInOpenState: 5s
+        slidingWindowType: COUNT_BASED

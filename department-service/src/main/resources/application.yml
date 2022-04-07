@@ -1,0 +1,10 @@
+server:
+  port: 9000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dissertation
+    username: postgres
+    password: ngoisaoleloi2S
+  application:
+    name: departments-service

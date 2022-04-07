@@ -1,0 +1,21 @@
+server:
+  port: 8001
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dissertation_user
+    username: postgres
+    password: ngoisaoleloi2S
+
+  application:
+    name: users-service
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

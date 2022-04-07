@@ -1,0 +1,24 @@
+server:
+  port: 8200
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/reporting-service
+
+
+  application:
+    name: reporting-service
+
+
+  jackson:
+    time-zone: Asia/Ho_Chi_Minh
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG

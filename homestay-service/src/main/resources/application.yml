@@ -1,0 +1,24 @@
+server:
+  port: 8400
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/homestay-service
+
+
+  application:
+    name: homestay-service
+
+
+  jackson:
+    time-zone: Asia/Ho_Chi_Minh
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
