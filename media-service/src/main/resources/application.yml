@@ -1,0 +1,30 @@
+server:
+  port: 8300
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/media-service
+
+  application:
+    name: media-service
+
+
+  jackson:
+    time-zone: Asia/Ho_Chi_Minh
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  username: hoanglinhhl05@gmail.com
+  password: ngoisaoleloi2S
+  from: hoanglinhhl05@gmail.com

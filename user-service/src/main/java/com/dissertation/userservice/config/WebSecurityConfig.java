@@ -17,8 +17,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.ws.rs.HttpMethod;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
@@ -64,4 +62,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .logout().deleteCookies(AuthTokenFilter.COOKIE_NAME);
     }
+
 }

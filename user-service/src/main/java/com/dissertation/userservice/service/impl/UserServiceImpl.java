@@ -174,4 +174,11 @@ public class UserServiceImpl implements UserService {
         return new GeneralApiResponse<>(StatusResponseEnum.SUCCESS.name(), StatusResponseEnum.SUCCESS.getValue(), HttpStatus.OK.getReasonPhrase());
     }
 
+    @Override
+    public Boolean validateUsername(String emailAddress) {
+        return userRepository.findByEmail(emailAddress).map(user -> {
+            return false;
+        }).orElseGet(() -> {return true;});
+    }
+
 }

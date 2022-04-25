@@ -119,6 +119,11 @@ public class UserController {
         return userService.updatePassword(email, currentPassword, newPassword);
     }
 
+    @PostMapping(value = "/users/validateUsername")
+    public Boolean validateUsername(@RequestParam("emailAddress") String emailAddress) {
+        return userService.validateUsername(emailAddress);
+    }
+
 
     private List<ApiMessage> validateUser(PostUserRequest userRequest, boolean isNew) {
         List<ApiMessage> apiMessages = new ArrayList<>();

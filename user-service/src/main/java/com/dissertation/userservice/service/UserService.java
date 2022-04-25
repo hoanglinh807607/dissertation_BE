@@ -1,14 +1,11 @@
 package com.dissertation.userservice.service;
 
-import com.dissertation.common.entities.user_service.User;
 import com.dissertation.common.model.user_service.UserModel;
 import com.dissertation.common.model.user_service.user.PostUserRequest;
 import com.dissertation.common.model.user_service.user.PutUserRequest;
 import com.dissertation.common.model.user_service.user.UserRequestParams;
 import com.dissertation.common.pojo.GeneralApiResponse;
 import org.springframework.data.domain.Page;
-
-import java.util.Optional;
 
 public interface UserService {
     UserModel findByEmailAddress(String email);
@@ -28,6 +25,8 @@ public interface UserService {
     UserModel updateUser(PutUserRequest userRequest, Integer id);
 
     GeneralApiResponse updatePassword(String email, String currentPassword, String newPassword);
+
+    Boolean validateUsername(String emailAddress);
 
 //    List<UserModel> getUsersSelection(List<String> agencies);
 //
